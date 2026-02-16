@@ -106,6 +106,7 @@ export default function MessageInput({
                                 type="button"
                                 className="ml-1 text-slate-500 hover:text-red-400 p-0.5 rounded transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
                                 onClick={() => onRemoveAttachment(i)}
+                                aria-label={`Remove attachment ${att.originalName}`}
                             >
                                 ✕
                             </button>
@@ -123,9 +124,10 @@ export default function MessageInput({
                             ? "border-violet-500/40 bg-violet-500/20 text-violet-200 shadow-[0_0_10px_rgba(139,92,246,0.2)]"
                             : "border-white/10 bg-white/[0.03] text-slate-400 hover:bg-white/[0.06]"
                         }`}
+                    aria-label={`Web Search ${featureOptions.webSearch ? "enabled" : "disabled"}`}
                 >
                     <span className="hidden sm:inline">Web Search {featureOptions.webSearch ? "ON" : "OFF"}</span>
-                    <span className="sm:hidden">Web {featureOptions.webSearch ? "✓" : "✗"}</span>
+                    <span className="sm:hidden" aria-hidden="true">Web {featureOptions.webSearch ? "✓" : "✗"}</span>
                 </button>
                 <button
                     type="button"
@@ -134,9 +136,10 @@ export default function MessageInput({
                             ? "border-violet-500/40 bg-violet-500/20 text-violet-200 shadow-[0_0_10px_rgba(139,92,246,0.2)]"
                             : "border-white/10 bg-white/[0.03] text-slate-400 hover:bg-white/[0.06]"
                         }`}
+                    aria-label={`Smart Date ${featureOptions.dateGrounding ? "enabled" : "disabled"}`}
                 >
                     <span className="hidden sm:inline">Smart Date {featureOptions.dateGrounding ? "ON" : "OFF"}</span>
-                    <span className="sm:hidden">Date {featureOptions.dateGrounding ? "✓" : "✗"}</span>
+                    <span className="sm:hidden" aria-hidden="true">Date {featureOptions.dateGrounding ? "✓" : "✗"}</span>
                 </button>
                 <button
                     type="button"
@@ -145,9 +148,10 @@ export default function MessageInput({
                             ? "border-violet-500/40 bg-violet-500/20 text-violet-200 shadow-[0_0_10px_rgba(139,92,246,0.2)]"
                             : "border-white/10 bg-white/[0.03] text-slate-400 hover:bg-white/[0.06]"
                         }`}
+                    aria-label={`Code Mode ${featureOptions.codeMode ? "enabled" : "disabled"}`}
                 >
                     <span className="hidden sm:inline">Code Mode {featureOptions.codeMode ? "ON" : "OFF"}</span>
-                    <span className="sm:hidden">Code {featureOptions.codeMode ? "✓" : "✗"}</span>
+                    <span className="sm:hidden" aria-hidden="true">Code {featureOptions.codeMode ? "✓" : "✗"}</span>
                 </button>
             </div>
 
