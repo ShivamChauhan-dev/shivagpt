@@ -73,7 +73,7 @@ export default function MessageInput({
     }
 
     return (
-        <div className="border-t border-white/[0.06] bg-[#13131d]/60 p-4 backdrop-blur z-20">
+        <div className="border-t border-white/[0.06] bg-[#13131d]/60 p-3 sm:p-4 backdrop-blur z-20">
             <input
                 ref={fileInputRef}
                 type="file"
@@ -86,25 +86,25 @@ export default function MessageInput({
 
             {/* Pending attachments */}
             {pendingAttachments.length > 0 && (
-                <div className="mb-3 flex flex-wrap gap-2 animate-in slide-in-from-bottom-2 duration-300">
+                <div className="mb-2 sm:mb-3 flex flex-wrap gap-1.5 sm:gap-2 animate-in slide-in-from-bottom-2 duration-300">
                     {pendingAttachments.map((att, i) => (
                         <div
                             key={`${att.url}-${i}`}
-                            className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1.5 text-xs group relative hover:border-violet-500/50 transition-colors"
+                            className="flex items-center gap-1.5 sm:gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-2 sm:px-2.5 py-1 sm:py-1.5 text-[10px] sm:text-xs group relative hover:border-violet-500/50 transition-colors"
                         >
                             {isImg(att.mimeType) ? (
                                 <img
                                     src={att.url}
                                     alt=""
-                                    className="h-8 w-8 rounded object-cover border border-white/10"
+                                    className="h-6 w-6 sm:h-8 sm:w-8 rounded object-cover border border-white/10"
                                 />
                             ) : (
                                 <IconPaperclip />
                             )}
-                            <span className="max-w-32 truncate">{att.originalName}</span>
+                            <span className="max-w-24 sm:max-w-32 truncate">{att.originalName}</span>
                             <button
                                 type="button"
-                                className="ml-1 text-slate-500 hover:text-red-400 p-0.5 rounded transition-colors"
+                                className="ml-1 text-slate-500 hover:text-red-400 p-0.5 rounded transition-colors min-h-[32px] min-w-[32px] flex items-center justify-center"
                                 onClick={() => onRemoveAttachment(i)}
                             >
                                 ✕
@@ -115,49 +115,52 @@ export default function MessageInput({
             )}
 
             {/* Composer */}
-            <div className="mx-auto mb-2 flex max-w-3xl flex-wrap items-center gap-2">
+            <div className="mx-auto mb-2 flex max-w-3xl flex-wrap items-center gap-1.5 sm:gap-2">
                 <button
                     type="button"
                     onClick={() => toggleFeature("webSearch")}
-                    className={`rounded-full border px-2.5 py-1 text-[11px] transition-all duration-200 ${featureOptions.webSearch
+                    className={`rounded-full border px-2 sm:px-2.5 py-1 text-[10px] sm:text-[11px] transition-all duration-200 min-h-[32px] ${featureOptions.webSearch
                             ? "border-violet-500/40 bg-violet-500/20 text-violet-200 shadow-[0_0_10px_rgba(139,92,246,0.2)]"
                             : "border-white/10 bg-white/[0.03] text-slate-400 hover:bg-white/[0.06]"
                         }`}
                 >
-                    Web Search {featureOptions.webSearch ? "ON" : "OFF"}
+                    <span className="hidden sm:inline">Web Search {featureOptions.webSearch ? "ON" : "OFF"}</span>
+                    <span className="sm:hidden">Web {featureOptions.webSearch ? "✓" : "✗"}</span>
                 </button>
                 <button
                     type="button"
                     onClick={() => toggleFeature("dateGrounding")}
-                    className={`rounded-full border px-2.5 py-1 text-[11px] transition-all duration-200 ${featureOptions.dateGrounding
+                    className={`rounded-full border px-2 sm:px-2.5 py-1 text-[10px] sm:text-[11px] transition-all duration-200 min-h-[32px] ${featureOptions.dateGrounding
                             ? "border-violet-500/40 bg-violet-500/20 text-violet-200 shadow-[0_0_10px_rgba(139,92,246,0.2)]"
                             : "border-white/10 bg-white/[0.03] text-slate-400 hover:bg-white/[0.06]"
                         }`}
                 >
-                    Smart Date {featureOptions.dateGrounding ? "ON" : "OFF"}
+                    <span className="hidden sm:inline">Smart Date {featureOptions.dateGrounding ? "ON" : "OFF"}</span>
+                    <span className="sm:hidden">Date {featureOptions.dateGrounding ? "✓" : "✗"}</span>
                 </button>
                 <button
                     type="button"
                     onClick={() => toggleFeature("codeMode")}
-                    className={`rounded-full border px-2.5 py-1 text-[11px] transition-all duration-200 ${featureOptions.codeMode
+                    className={`rounded-full border px-2 sm:px-2.5 py-1 text-[10px] sm:text-[11px] transition-all duration-200 min-h-[32px] ${featureOptions.codeMode
                             ? "border-violet-500/40 bg-violet-500/20 text-violet-200 shadow-[0_0_10px_rgba(139,92,246,0.2)]"
                             : "border-white/10 bg-white/[0.03] text-slate-400 hover:bg-white/[0.06]"
                         }`}
                 >
-                    Code Mode {featureOptions.codeMode ? "ON" : "OFF"}
+                    <span className="hidden sm:inline">Code Mode {featureOptions.codeMode ? "ON" : "OFF"}</span>
+                    <span className="sm:hidden">Code {featureOptions.codeMode ? "✓" : "✗"}</span>
                 </button>
             </div>
 
-            <div className="mx-auto flex max-w-3xl items-end gap-2 rounded-2xl border border-white/[0.08] bg-[#1a1a28] p-2 shadow-lg focus-within:border-violet-500/30 focus-within:ring-1 focus-within:ring-violet-500/30 transition-all">
+            <div className="mx-auto flex max-w-3xl items-end gap-1.5 sm:gap-2 rounded-2xl border border-white/[0.08] bg-[#1a1a28] p-1.5 sm:p-2 shadow-lg focus-within:border-violet-500/30 focus-within:ring-1 focus-within:ring-violet-500/30 transition-all">
                 <button
                     type="button"
-                    className="flex-shrink-0 rounded-xl p-2.5 text-slate-400 transition hover:bg-white/10 hover:text-white disabled:opacity-50"
+                    className="flex-shrink-0 rounded-xl p-2 sm:p-2.5 text-slate-400 transition hover:bg-white/10 hover:text-white disabled:opacity-50 min-h-[44px] min-w-[44px] flex items-center justify-center"
                     onClick={() => fileInputRef.current?.click()}
                     disabled={sending || uploading}
                     title="Attach files"
                 >
                     {uploading ? (
-                        <span className="inline-block h-[18px] w-[18px] animate-spin rounded-full border-2 border-slate-400 border-t-transparent" />
+                        <span className="inline-block h-[16px] w-[16px] sm:h-[18px] sm:w-[18px] animate-spin rounded-full border-2 border-slate-400 border-t-transparent" />
                     ) : (
                         <IconPaperclip />
                     )}
@@ -166,7 +169,7 @@ export default function MessageInput({
                 <textarea
                     ref={textareaRef}
                     rows={1}
-                    className="max-h-32 min-h-[40px] flex-1 resize-none bg-transparent px-1 py-2 text-sm outline-none placeholder:text-slate-500 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent"
+                    className="max-h-32 min-h-[40px] flex-1 resize-none bg-transparent px-1 py-2 text-xs sm:text-sm outline-none placeholder:text-slate-500 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent"
                     placeholder="Type a message..."
                     value={input}
                     onChange={(e) => {
@@ -180,7 +183,7 @@ export default function MessageInput({
 
                 <button
                     type="button"
-                    className={`flex-shrink-0 rounded-xl p-2.5 text-white shadow-lg transition-all active:scale-95 disabled:opacity-50 disabled:active:scale-100 ${input.trim() || pendingAttachments.length > 0
+                    className={`flex-shrink-0 rounded-xl p-2 sm:p-2.5 text-white shadow-lg transition-all active:scale-95 disabled:opacity-50 disabled:active:scale-100 min-h-[44px] min-w-[44px] flex items-center justify-center ${input.trim() || pendingAttachments.length > 0
                             ? "bg-violet-600 hover:bg-violet-500 shadow-violet-600/20"
                             : "bg-white/10 text-slate-400 hover:bg-white/20"
                         }`}
@@ -193,7 +196,7 @@ export default function MessageInput({
                 </button>
             </div>
 
-            <p className="mt-2 text-center text-[10px] text-slate-600 select-none">
+            <p className="mt-2 text-center text-[9px] sm:text-[10px] text-slate-600 select-none">
                 Enter to send · Shift+Enter for new line · Drop files to attach
             </p>
         </div>

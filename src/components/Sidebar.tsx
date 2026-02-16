@@ -33,6 +33,7 @@ interface SidebarProps {
     authUser: AuthUser | null;
     onLogout: () => void;
     onDeleteAllChats: () => void;
+    onToggleSidebar?: () => void;
 }
 
 export default function Sidebar({
@@ -50,6 +51,7 @@ export default function Sidebar({
     authUser,
     onLogout,
     onDeleteAllChats,
+    onToggleSidebar,
 }: SidebarProps) {
     const [searchQuery, setSearchQuery] = useState("");
     const [renamingChatId, setRenamingChatId] = useState<string | null>(null);
@@ -83,14 +85,24 @@ export default function Sidebar({
 
     return (
         <>
+            {/* Mobile overlay */}
+            {isOpen && (
+                <div
+                    className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 lg:hidden"
+                    onClick={onToggleSidebar}
+                    aria-hidden="true"
+                />
+            )}
+
             <aside
-                className={`flex flex-col border-r border-white-[0.06] bg-[#13131d] transition-all duration-300 ${isOpen ? "w-80" : "w-0 overflow-hidden"
-                    }`}
+                className={`fixed lg:relative z-40 flex flex-col border-r border-white-[0.06] bg-[#13131d] transition-all duration-300 h-full ${
+                    isOpen ? "translate-x-0 w-80" : "-translate-x-full lg:translate-x-0 lg:w-0 lg:overflow-hidden"
+                }`}
             >
                 {/* Sidebar header */}
                 <div className="flex-shrink-0 p-4 pb-2">
                     <button
-                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-violet-600 px-3 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-600/20 transition hover:bg-violet-500 active:scale-[0.98] disabled:opacity-60"
+                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-violet-600 px-3 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-600/20 transition hover:bg-violet-500 active:scale-[0.98] disabled:opacity-60 min-h-[44px]"
                         onClick={onNewChat}
                         type="button"
                         disabled={creating}

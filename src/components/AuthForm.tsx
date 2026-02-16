@@ -119,11 +119,12 @@ export default function AuthForm({ onAuthSuccess }: AuthFormProps) {
             });
 
             googleButtonRef.current.innerHTML = "";
+            const isMobile = window.innerWidth < 640;
             window.google.accounts.id.renderButton(googleButtonRef.current, {
                 theme: "outline",
                 size: "large",
                 shape: "pill",
-                width: 320,
+                width: isMobile ? Math.min(googleButtonRef.current.offsetWidth, 320) : 320,
                 text: "continue_with",
             });
 
@@ -155,16 +156,16 @@ export default function AuthForm({ onAuthSuccess }: AuthFormProps) {
     }, [handleGoogleCredential]);
 
     return (
-        <div className="flex h-screen items-center justify-center bg-[#0f0f17] px-4 text-slate-100">
+        <div className="flex h-screen items-center justify-center bg-[#0f0f17] px-4 sm:px-6 text-slate-100">
             <form
                 onSubmit={handleAuthSubmit}
-                className="w-full max-w-md rounded-2xl border border-white/10 bg-[#13131d] p-6 shadow-2xl backdrop-blur-sm"
+                className="w-full max-w-md rounded-2xl border border-white/10 bg-[#13131d] p-5 sm:p-6 shadow-2xl backdrop-blur-sm"
             >
-                <div className="mb-6 text-center">
-                    <h1 className="text-2xl font-bold bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+                <div className="mb-5 sm:mb-6 text-center">
+                    <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
                         {authMode === "login" ? "Welcome Back" : "Create Account"}
                     </h1>
-                    <p className="mt-2 text-sm text-slate-400">
+                    <p className="mt-2 text-xs sm:text-sm text-slate-400">
                         {authMode === "login"
                             ? "Login to continue your AI journey"
                             : "Signup to start exploring"}
@@ -172,47 +173,50 @@ export default function AuthForm({ onAuthSuccess }: AuthFormProps) {
                 </div>
 
                 {authMode === "signup" && (
-                    <div className="mb-3">
+                    <div className="mb-3 sm:mb-3">
                         <label className="block text-xs font-medium text-slate-400 mb-1 ml-1">Full Name</label>
                         <input
-                            className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm outline-none placeholder:text-slate-600 focus:border-violet-500/50 focus:bg-white/[0.08] transition-all"
+                            className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm sm:text-base outline-none placeholder:text-slate-600 focus:border-violet-500/50 focus:bg-white/[0.08] transition-all"
                             placeholder="John Doe"
                             value={authName}
                             onChange={(e) => setAuthName(e.target.value)}
                             required
+                            autoComplete="name"
                         />
                     </div>
                 )}
 
-                <div className="mb-3">
+                <div className="mb-3 sm:mb-3">
                     <label className="block text-xs font-medium text-slate-400 mb-1 ml-1">Email Address</label>
                     <input
-                        className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm outline-none placeholder:text-slate-600 focus:border-violet-500/50 focus:bg-white/[0.08] transition-all"
+                        className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm sm:text-base outline-none placeholder:text-slate-600 focus:border-violet-500/50 focus:bg-white/[0.08] transition-all"
                         type="email"
                         placeholder="name@example.com"
                         value={authEmail}
                         onChange={(e) => setAuthEmail(e.target.value)}
                         required
+                        autoComplete="email"
                     />
                 </div>
 
-                <div className="mb-6">
+                <div className="mb-5 sm:mb-6">
                     <label className="block text-xs font-medium text-slate-400 mb-1 ml-1">Password</label>
                     <input
-                        className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm outline-none placeholder:text-slate-600 focus:border-violet-500/50 focus:bg-white/[0.08] transition-all"
+                        className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm sm:text-base outline-none placeholder:text-slate-600 focus:border-violet-500/50 focus:bg-white/[0.08] transition-all"
                         type="password"
                         placeholder="••••••••"
                         value={authPassword}
                         onChange={(e) => setAuthPassword(e.target.value)}
                         minLength={6}
                         required
+                        autoComplete={authMode === "login" ? "current-password" : "new-password"}
                     />
                 </div>
 
                 <button
                     type="submit"
                     disabled={authLoading}
-                    className="w-full rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 px-4 py-3 text-sm font-bold text-white shadow-lg shadow-violet-600/20 transition hover:from-violet-500 hover:to-fuchsia-500 hover:shadow-violet-600/30 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 px-4 py-3 sm:py-3 text-sm sm:text-base font-bold text-white shadow-lg shadow-violet-600/20 transition hover:from-violet-500 hover:to-fuchsia-500 hover:shadow-violet-600/30 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed min-h-[44px]"
                 >
                     {authLoading
                         ? "Please wait..."
@@ -224,7 +228,7 @@ export default function AuthForm({ onAuthSuccess }: AuthFormProps) {
                 <div className="mt-4 text-center">
                     <button
                         type="button"
-                        className="text-sm text-slate-400 hover:text-white transition-colors"
+                        className="text-xs sm:text-sm text-slate-400 hover:text-white transition-colors min-h-[44px] px-2 py-2"
                         onClick={() => {
                             setAuthMode((prev) => (prev === "login" ? "signup" : "login"));
                             setError(null);
@@ -245,7 +249,7 @@ export default function AuthForm({ onAuthSuccess }: AuthFormProps) {
                 </div>
 
                 <div className="mt-6 flex justify-center">
-                    <div ref={googleButtonRef} className="h-[44px]" />
+                    <div ref={googleButtonRef} className="min-h-[44px] w-full max-w-[320px]" />
                 </div>
 
                 {!process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID && (
