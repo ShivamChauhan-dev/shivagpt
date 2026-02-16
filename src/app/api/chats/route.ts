@@ -79,3 +79,27 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+export async function DELETE(request: NextRequest) {
+  try {
+    await connectDB();
+    const user = getSessionUser(request);
+    if (!user) {
+      return NextResponse.json(
+        { success: false, error: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
+    await Chat.deleteMany({ userId: user.id });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    const message =
+      error instanceof Error ? error.message : "Failed to delete chats";
+    return NextResponse.json(
+      { success: false, error: message },
+      { status: 500 },
+    );
+  }
+}
