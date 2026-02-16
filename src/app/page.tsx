@@ -384,6 +384,7 @@ export default function Home() {
         authUser={authUser}
         onLogout={logout}
         onDeleteAllChats={deleteAllChats}
+        onToggleSidebar={() => setSidebarOpen(prev => !prev)}
       />
 
       {/* ── Main ── */}
