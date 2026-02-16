@@ -104,7 +104,7 @@ export default function MessageInput({
                             <span className="max-w-24 sm:max-w-32 truncate">{att.originalName}</span>
                             <button
                                 type="button"
-                                className="ml-1 text-slate-500 hover:text-red-400 p-0.5 rounded transition-colors min-h-[32px] min-w-[32px] flex items-center justify-center"
+                                className="ml-1 text-slate-500 hover:text-red-400 p-0.5 rounded transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
                                 onClick={() => onRemoveAttachment(i)}
                             >
                                 ✕
@@ -119,7 +119,7 @@ export default function MessageInput({
                 <button
                     type="button"
                     onClick={() => toggleFeature("webSearch")}
-                    className={`rounded-full border px-2 sm:px-2.5 py-1 text-[10px] sm:text-[11px] transition-all duration-200 min-h-[32px] ${featureOptions.webSearch
+                    className={`rounded-full border px-3 sm:px-2.5 py-2 text-[10px] sm:text-[11px] transition-all duration-200 min-h-[44px] ${featureOptions.webSearch
                             ? "border-violet-500/40 bg-violet-500/20 text-violet-200 shadow-[0_0_10px_rgba(139,92,246,0.2)]"
                             : "border-white/10 bg-white/[0.03] text-slate-400 hover:bg-white/[0.06]"
                         }`}
@@ -130,7 +130,7 @@ export default function MessageInput({
                 <button
                     type="button"
                     onClick={() => toggleFeature("dateGrounding")}
-                    className={`rounded-full border px-2 sm:px-2.5 py-1 text-[10px] sm:text-[11px] transition-all duration-200 min-h-[32px] ${featureOptions.dateGrounding
+                    className={`rounded-full border px-3 sm:px-2.5 py-2 text-[10px] sm:text-[11px] transition-all duration-200 min-h-[44px] ${featureOptions.dateGrounding
                             ? "border-violet-500/40 bg-violet-500/20 text-violet-200 shadow-[0_0_10px_rgba(139,92,246,0.2)]"
                             : "border-white/10 bg-white/[0.03] text-slate-400 hover:bg-white/[0.06]"
                         }`}
@@ -141,7 +141,7 @@ export default function MessageInput({
                 <button
                     type="button"
                     onClick={() => toggleFeature("codeMode")}
-                    className={`rounded-full border px-2 sm:px-2.5 py-1 text-[10px] sm:text-[11px] transition-all duration-200 min-h-[32px] ${featureOptions.codeMode
+                    className={`rounded-full border px-3 sm:px-2.5 py-2 text-[10px] sm:text-[11px] transition-all duration-200 min-h-[44px] ${featureOptions.codeMode
                             ? "border-violet-500/40 bg-violet-500/20 text-violet-200 shadow-[0_0_10px_rgba(139,92,246,0.2)]"
                             : "border-white/10 bg-white/[0.03] text-slate-400 hover:bg-white/[0.06]"
                         }`}

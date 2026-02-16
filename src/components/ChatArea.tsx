@@ -181,7 +181,7 @@ export default function ChatArea({
                             <button
                                 type="button"
                                 title="Copy"
-                                className="rounded p-1 hover:bg-white/10 hover:text-slate-300 min-h-[32px] min-w-[32px] flex items-center justify-center"
+                                className="rounded p-1 hover:bg-white/10 hover:text-slate-300 min-h-[44px] min-w-[44px] flex items-center justify-center"
                                 onClick={() => copyMessage(msg.content, idx)}
                             >
                                 {copiedIdx === idx ? (
