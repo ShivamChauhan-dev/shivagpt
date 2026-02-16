@@ -90,13 +90,13 @@ export default function MessageInput({
                     {pendingAttachments.map((att, i) => (
                         <div
                             key={`${att.url}-${i}`}
-                            className="flex items-center gap-1.5 sm:gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-2 sm:px-2.5 py-1 sm:py-1.5 text-[10px] sm:text-xs group relative hover:border-violet-500/50 transition-colors"
+                            className="flex items-center gap-1.5 sm:gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-2 sm:px-2.5 py-2 sm:py-2 text-[10px] sm:text-xs group relative hover:border-violet-500/50 transition-colors min-h-[44px]"
                         >
                             {isImg(att.mimeType) ? (
                                 <img
                                     src={att.url}
                                     alt=""
-                                    className="h-6 w-6 sm:h-8 sm:w-8 rounded object-cover border border-white/10"
+                                    className="h-8 w-8 sm:h-8 sm:w-8 rounded object-cover border border-white/10"
                                 />
                             ) : (
                                 <IconPaperclip />
@@ -104,7 +104,7 @@ export default function MessageInput({
                             <span className="max-w-24 sm:max-w-32 truncate">{att.originalName}</span>
                             <button
                                 type="button"
-                                className="ml-1 text-slate-500 hover:text-red-400 p-0.5 rounded transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                                className="ml-1 text-slate-500 hover:text-red-400 p-2 rounded transition-colors flex items-center justify-center -m-2"
                                 onClick={() => onRemoveAttachment(i)}
                                 aria-label={`Remove attachment ${att.originalName}`}
                             >

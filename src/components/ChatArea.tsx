@@ -177,12 +177,13 @@ export default function ChatArea({
 
                         {/* Timestamp + actions */}
                         <div className={`mt-1 flex items-center gap-1.5 sm:gap-2 text-[9px] sm:text-[10px] text-slate-500 opacity-0 transition-opacity group-hover:opacity-100 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                            {fmtTime(msg.createdAt)}
+                            <span className="py-2">{fmtTime(msg.createdAt)}</span>
                             <button
                                 type="button"
-                                title="Copy"
-                                className="rounded p-1 hover:bg-white/10 hover:text-slate-300 min-h-[44px] min-w-[44px] flex items-center justify-center"
+                                title="Copy message"
+                                className="rounded p-2 hover:bg-white/10 hover:text-slate-300 flex items-center justify-center"
                                 onClick={() => copyMessage(msg.content, idx)}
+                                aria-label="Copy message to clipboard"
                             >
                                 {copiedIdx === idx ? (
                                     <span className="text-green-400 font-medium text-[9px] sm:text-[10px]">Copied</span>
